@@ -57,3 +57,8 @@ body {
 		transform: translate3d(4px, 0, 0);
 	}
 }
+
+em-emoji-picker {
+	max-width: 250px;
+	max-height: 350px;
+}
