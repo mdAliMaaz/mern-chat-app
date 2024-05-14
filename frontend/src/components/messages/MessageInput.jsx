@@ -2,6 +2,7 @@ import { useState } from "react";
 import { BsSend } from "react-icons/bs";
 import useSendMessage from "../../hooks/useSendMessage";
 import Emoji from "./Emoji";
+import ImageUpload from "./ImageUpload";
 
 const MessageInput = () => {
   const [message, setMessage] = useState("");
@@ -30,6 +31,8 @@ const MessageInput = () => {
         setShowEmojis={setShowEmojis}
         handleEmojiChange={handleEmojiChange}
       />
+      <ImageUpload />
+
       <div className="relative w-full ">
         <input
           type="text"

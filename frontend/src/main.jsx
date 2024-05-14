@@ -5,15 +5,20 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
 import { SocketContextProvider } from "./context/SocketContext.jsx";
+import { ModelProvider } from "./context/ModelContext.jsx";
+import ImagePreviewModel from "./components/model/ImagePreviewModel.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<AuthContextProvider>
-				<SocketContextProvider>
-					<App />
-				</SocketContextProvider>
-			</AuthContextProvider>
-		</BrowserRouter>
-	</React.StrictMode>
+  <React.StrictMode>
+    <BrowserRouter>
+      <ModelProvider>
+        <AuthContextProvider>
+          <SocketContextProvider>
+            <ImagePreviewModel />
+            <App />
+          </SocketContextProvider>
+        </AuthContextProvider>
+      </ModelProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );
