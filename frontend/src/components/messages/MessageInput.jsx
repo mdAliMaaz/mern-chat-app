@@ -7,7 +7,6 @@ const MessageInput = () => {
   const [message, setMessage] = useState("");
   const { loading, sendMessage } = useSendMessage();
   const [showEmojis, setShowEmojis] = useState(false);
-  const [selectedEmoji, setSelectedEmoji] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,11 +14,10 @@ const MessageInput = () => {
     if (!message) return;
     await sendMessage(message);
     setMessage("");
-    setSelectedEmoji("");
   };
 
-  const handleEmojiChange = () => {
-    setMessage((prev) => prev + selectedEmoji);
+  const handleEmojiChange = (e) => {
+    setMessage((prev) => prev + e.native);
   };
 
   return (
@@ -30,7 +28,6 @@ const MessageInput = () => {
       <Emoji
         showEmojis={showEmojis}
         setShowEmojis={setShowEmojis}
-        setSelectedEmoji={setSelectedEmoji}
         handleEmojiChange={handleEmojiChange}
       />
       <div className="relative w-full ">
