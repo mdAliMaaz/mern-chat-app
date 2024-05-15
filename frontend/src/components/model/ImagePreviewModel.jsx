@@ -7,7 +7,7 @@ const ImagePreviewModel = () => {
   const { showModel, setShowModel, imgPreview, setImgPreview } =
     useModelContext();
 
-  const { setImage } = useConversation();
+  const { setImage, image } = useConversation();
 
   const { sendImage, loading } = useSendImage();
   if (!showModel) {
@@ -28,17 +28,20 @@ const ImagePreviewModel = () => {
   return (
     <>
       {imgPreview && (
-        <div className="absolute z-50 flex items-center justify-center w-screen h-screen px-10 bg-black/50">
+        <div className="absolute z-30 flex items-center justify-center w-screen h-screen px-10 bg-black/50">
           <div className="relative w-full rounded-lg md:w-1/2 h-1/2 ">
-            <MdCancel
-              className="absolute z-50 cursor-pointer size-8 right-1"
+            <button
+              type="button"
+              className="absolute z-50 right-1"
               onClick={handleCancle}
-            />
+            >
+              <MdCancel className=" size-8" />
+            </button>
             <div className="absolute w-full h-full  m-4 transform -translate-x-1/2 -translate-y-1/2   top-[40%] left-1/2">
               <img
                 src={imgPreview}
                 alt="chat-img"
-                className="object-cover w-full h-full rounded-lg"
+                className="z-10 object-cover w-full h-full rounded-lg"
               />
               <button
                 onClick={handleSubmit}

@@ -6,9 +6,13 @@ import { Cloudinary } from "../utils/Cloudinary.js";
 export const sendMessage = async (req, res) => {
   try {
     const { message } = req.body;
+    
     const { id: receiverId } = req.params;
+
     const senderId = req.user._id;
+
     let img = req?.file?.path;
+
     let conversation = await Conversation.findOne({
       participants: { $all: [senderId, receiverId] },
     });
