@@ -3,11 +3,10 @@ import { useModelContext } from "../../context/ModelContext";
 import useConversation from "../../zustand/useConversation";
 
 const ImageUpload = () => {
-  const { setImg, setShowModel } = useModelContext();
+  const { setShowModel } = useModelContext();
   const { setImage } = useConversation();
 
   const handleImageChange = (e) => {
-    setImg(e.target.files[0]);
     setImage(e.target.files[0]);
     setShowModel(true);
   };

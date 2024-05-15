@@ -1,10 +1,13 @@
 import { MdCancel } from "react-icons/md";
 import { useModelContext } from "../../context/ModelContext";
 import useSendImage from "../../hooks/useSendImage";
+import useConversation from "../../zustand/useConversation";
 
 const ImagePreviewModel = () => {
-  const { showModel, setShowModel, imgPreview, setImg, setImgPreview } =
+  const { showModel, setShowModel, imgPreview, setImgPreview } =
     useModelContext();
+
+  const { setImage } = useConversation();
 
   const { sendImage, loading } = useSendImage();
   if (!showModel) {
@@ -13,13 +16,15 @@ const ImagePreviewModel = () => {
 
   function handleCancle() {
     setShowModel(false);
-    setImg(null);
+    setImage(null);
     setImgPreview("");
   }
 
   async function handleSubmit() {
     await sendImage();
+    handleCancle();
   }
+
   return (
     <>
       {imgPreview && (

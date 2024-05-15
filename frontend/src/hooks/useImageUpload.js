@@ -1,22 +1,22 @@
 import { useState } from "react";
+import useConversation from "../zustand/useConversation";
 
 const useImageUpload = () => {
-  const [img, setImg] = useState(null);
+  const {  image } = useConversation();
   const [imgPreview, setImgPreview] = useState("");
 
-  if (img) {
-    handleImgPreview(img);
+  if (image) {
+    handleImgPreview(image);
   }
-
-  function handleImgPreview(img) {
+  function handleImgPreview(image) {
     const reader = new FileReader();
     reader.onloadend = () => {
       setImgPreview(reader.result);
     };
-    reader.readAsDataURL(img);
+    reader.readAsDataURL(image);
   }
 
-  return { setImg, img, imgPreview, setImgPreview };
+  return { imgPreview, setImgPreview };
 };
 
 export default useImageUpload;

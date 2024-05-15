@@ -6,7 +6,7 @@ const useConversation = create((set) => ({
     set({ selectedConversation }),
   messages: [],
   setMessages: (messages) => set({ messages }),
-  image: {},
+  image: null,
   setImage: (image) => set({ image }),
 }));
 
