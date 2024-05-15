@@ -7,9 +7,10 @@ const ImagePreviewModel = () => {
   const { showModel, setShowModel, imgPreview, setImgPreview } =
     useModelContext();
 
-  const { setImage, image } = useConversation();
+  const { setImage } = useConversation();
 
   const { sendImage, loading } = useSendImage();
+  
   if (!showModel) {
     return;
   }
