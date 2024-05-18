@@ -1,12 +1,13 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import User from "../models/user.model.js";
 import { getReceiverSocketId, io } from "../socket/socket.js";
 import { Cloudinary } from "../utils/Cloudinary.js";
 
 export const sendMessage = async (req, res) => {
   try {
     const { message } = req.body;
-    
+
     const { id: receiverId } = req.params;
 
     const senderId = req.user._id;
@@ -33,12 +34,14 @@ export const sendMessage = async (req, res) => {
         receiverId,
         img: newImg,
       });
+      await User.findByIdAndUpdate(receiverId, { lastMessage: newImg });
     } else {
       newMessage = new Message({
         senderId,
         receiverId,
         message,
       });
+      await User.findByIdAndUpdate(receiverId, { lastMessage: message });
     }
 
     if (newMessage) {
