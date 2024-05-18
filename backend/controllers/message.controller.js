@@ -45,6 +45,7 @@ export const sendMessage = async (req, res) => {
     }
 
     if (newMessage) {
+      newMessage.conversationId = conversation._id;
       conversation.messages.push(newMessage._id);
     }
 

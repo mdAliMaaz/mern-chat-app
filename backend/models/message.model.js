@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const messageSchema = new mongoose.Schema(
   {
+    conversationId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Conversation",
+    },
     senderId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -17,6 +21,10 @@ const messageSchema = new mongoose.Schema(
     },
     img: {
       type: String,
+    },
+    seen: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
